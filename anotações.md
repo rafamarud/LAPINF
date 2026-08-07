@@ -1,6 +1,6 @@
-# 🚀 Como Rodar o Projeto Localmente (Docker)
+# 🚀 Como Rodar o Projeto Localmente (Docker & Python Local)
 
-Este guia orienta o passo a passo para configurar o ambiente e executar o sistema **SIEI** na sua máquina local utilizando o Docker.
+Este guia orienta o passo a passo para configurar o ambiente e executar o sistema **SIEI** na sua máquina local utilizando o Docker ou interpretadores Python diretos.
 
 ---
 
@@ -28,27 +28,69 @@ O projeto depende de um arquivo `.env` na raiz para funcionar.
 2. Copie o conteúdo padrão do arquivo de exemplo (solicite ao time caso não encontre o `.env.example`).
 3. Certifique-se de salvar o arquivo antes de prosseguir.
 
-### 3. Executar o Docker pela Primeira Vez
-Abra o **Docker Desktop** e certifique-se de que o motor está rodando (`Engine running`). No terminal do VS Code, execute o comando abaixo para baixar as imagens e construir o container:
-```bash
-docker-compose up --build
-```
+---
 
-Após a inicialização completa, o sistema estará disponível no seu navegador através do endereço:
-👉 **[http://localhost:8000](http://localhost:8000)**
+## 📦 3. Preparação do Ambiente Python (Além do Docker)
+
+Caso precise configurar as dependências locais ou rodar o sistema diretamente pelo interpretador da máquina sem o Docker, siga as instruções da **Situação A** ou da **Situação B**, dependendo das ferramentas instaladas no computador atual:
+
+### 🔹 Situação A: Usando o método tradicional (Pip + Venv)
+Utilize estes comandos se a máquina possuir apenas a instalação padrão do Python:
+```powershell
+# 1. Cria o ambiente virtual na pasta do projeto
+python -m venv venv
+
+# 2. Ativa o ambiente no Windows
+.\venv\Scripts\Activate.ps1
+
+# 3. Instala as dependências listadas no arquivo
+pip install -r requirements.txt
+```
+*(Nota: Certifique-se de que a virtualização do Windows e os compiladores de C++ do Visual Studio Build Tools estejam instalados caso o comando pip exija compilação de pacotes brutos).*
+
+### 🔹 Situação B: Usando o método moderno (UV)
+Utilize estes comandos se o computador possuir a ferramenta de alta performance `uv` instalada:
+```powershell
+# 1. Cria o ambiente virtual de forma ultra-rápida
+uv venv .venv
+
+# 2. Ativa o ambiente integrado no Windows
+.\.venv\Scripts\Activate.ps1
+
+# 3. Instala as dependências de forma otimizada
+uv pip install -r requirements.txt
+```
 
 ---
 
-## 🔄 Como Rodar no Dia a Dia
+## 🔄 4. Como Rodar no Dia a Dia
 
-Nas próximas vezes que for programar, você não precisa reconstruir o ambiente do zero. Basta seguir estes 3 passos rápidos:
+Depois que o ambiente já foi preparado uma vez, escolha como deseja executar o sistema hoje:
 
-1. Abra o **Docker Desktop** (deixe rodando em segundo plano).
-2. Abra o projeto no **VS Code**.
-3. Inicie o servidor instantaneamente executando apenas:
+### 🐳 Opção 1: Executando pelo Docker (Recomendado pelo Lab)
+O Docker cria uma caixinha isolada com o banco de dados e o sistema idêntico ao dos servidores de homologação.
+1. Abra o **Docker Desktop** e aguarde até a barra inferior ficar verde (`Engine running`).
+2. Se for a **primeira vez** executando na máquina atual, monte o container com:
+   ```bash
+   docker-compose up --build
+   ```
+3. Nas **próximas vezes**, inicie o servidor instantaneamente executando apenas:
    ```bash
    docker-compose up
    ```
+
+### 🐍 Opção 2: Executando direto no Windows (Sem Docker)
+Se optar por rodar o servidor local do Django pelo terminal:
+1. Abra o terminal do VS Code e **ative** o ambiente virtual correspondente à máquina atual:
+   * Se usou Pip/Venv: `.\venv\Scripts\Activate.ps1`
+   * Se usou UV: `.\.venv\Scripts\Activate.ps1`
+2. Execute o servidor de desenvolvimento:
+   ```bash
+   python manage.py runserver
+   ```
+
+Após a inicialização completa por qualquer um dos métodos, o sistema estará disponível em:
+👉 **[http://localhost:8000](http://localhost:8000)**
 
 ---
 
@@ -78,5 +120,3 @@ Documentação interna sobre a infraestrutura e termos essenciais utilizados no 
 *   **Stack**: Conjunto de containers interconectados que formam uma aplicação completa. Gerencia múltiplos serviços que trabalham juntos em um ambiente de orquestração.
 *   **Dockerfile**: Receita detalhada da imagem. Tem como objetivo criar as instruções e os passos para gerar um molde (imagem) dentro de um único container.
 *   **Docker Compose**: Ferramenta que define e roda aplicações multi-container. Gerencia, conecta e configura múltiplos containers de forma unificada através de um arquivo YAML.
-
-
