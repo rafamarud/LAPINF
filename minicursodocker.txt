@@ -17,6 +17,26 @@ DOCKER --> Serviço de virtualização
 - Container
     - Imagem rodando
 - Imagem
+   - Versão estática das necessidades da aplicação
    - Receita de bolo
+
+
+- No dockerub procurar imagens compátiveis ( python, java, maven etc)
+
+- Comandos
+    - docker -- version
+    - docker ps -a (all)
+      - Especificacoes de todos os containers
+    - docker ps
+      - Especificações do container
+    - docker run hello-world
+      - rodando aplicacao do docker hub
+    - docker image ls
+      - ver imagens baixadas
+    - docker container rm 7fa276
+        - deletar container
+    - docker imagem rm 5e23
+        - deletar imagem
+    - 
 
  
