@@ -1,1 +1,22 @@
-aa
+DOCKER --> Serviço de virtualização
+
+- Como se fosse uma receita ( contém tudo que for necessario para rodar a aplicação)
+
+  - DOCKER vs AVM
+    * AVM
+      -  Divide amrazenamento com a maquina
+      -  SO dita a quantidade de armazenamento necessario
+          - Muitas Maquinas virtuais -- >Mais armazenamento necessario
+
+    * DOCKER 
+      -  Cotainer compacta as pendencias necessarias
+      -   Distribui versões minimas nos containers ( mais leves )
+      -  Nao precisa de interface, semelhante a um terminal
+          - Menos armazenamento necessario
+
+- Container
+    - Imagem rodando
+- Imagem
+   - Receita de bolo
+
+ 
