@@ -25,27 +25,54 @@ DOCKER --> Serviço de virtualização
 
 - Comandos
     - docker -- version
+
     - docker ps -a (all)
       - Especificacoes de todos os containers
     - docker ps
       - Especificações do container
+
     - docker run hello-world
       - rodando aplicacao do docker hub
+
     - docker image ls
       - ver imagens baixadas
+
     - docker container rm 7fa276
         - deletar container
+
     - docker imagem rm 5e23
         - deletar imagem
+
     - docker build -t (nome) (tag) --> construir a imagem a partir do dockerfile
     - docker run (nome):1.0
         - rodar container
+
     - docker stop (id ou nome)  
         - parar o container
+
     - docker run -p 8080 (id ou nome)
       - especificando a porta( docker nao reconhece a porta do navegador)
+
     - docker build --platform linux/amd64 -t mathffreitas/spring-boot-hello-world:1.0-amd64
       - criar um container com arquietetura amd64
+
+    - docker compose build
+      - constroi ou reconstroi as imagens ( nao aletara os servicos )
+
+    - docker compose up --build
+      - reescreve e reinicia o serviço
+
+    - docker compose up
+      - rodar 
+
+    - docker compose down
+      - para todos os containers ( e a rede )
+
+    - docker compose down -v
+      - apaga os volumes
+
+    
+
 
 
  
